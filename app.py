@@ -10,8 +10,6 @@ from fics import create_post_table
 
 app = Flask(__name__)
 
-app.secret_key = "14DFJDH@*hJdvkjkSF939EEBCE"
-
 with app.app_context():
     create_table()
     setup_profile()
