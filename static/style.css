@@ -1,0 +1,23 @@
+.title{
+    padding: 1%;
+}
+
+#date{
+    padding: 10px;
+}
+
+.container{
+    padding: 10px;
+}
+
+.text{
+    padding-top: 10px;
+}
+
+.inner-image{
+    width: 350px; 
+    height: 350px; 
+    object-fit: cover;
+    object-position: 25% 25%;
+    border-radius: 10px;
+}
