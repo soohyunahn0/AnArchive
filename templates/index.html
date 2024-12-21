@@ -59,10 +59,6 @@
               <input class="ui button secondary" name="Link" type="hidden" value="{{posts.Permalink}}">
               <input class="ui button secondary" name="submit" type="submit" value="Delete">
             </form>
-            <form action="{{ url_for('pages.editpost') }}" method="POST">
-              <input class="ui button secondary" name="PostId" type="hidden" value="{{posts.PostId}}">
-              <input class="ui button secondary" name="submit" type="submit" value="Edit">
-            </form>
           {% endif %}
         {% endmacro %}
           <ul>

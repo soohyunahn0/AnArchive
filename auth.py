@@ -12,7 +12,7 @@ def login_page():
         password = request.form['password']
         current_id = check_account(username, password)
         if not username or not password:
-            error = "Not so easy, you need to fill the form."
+            error = "Please enter both a username and password."
         elif current_id:
             session['logged_in'] = True
             session['user_id'] = current_id

@@ -1,6 +1,6 @@
 from connection import get_db
 from flask import Flask, Blueprint, render_template, redirect, session, url_for, request
-from fics import get_posts, find_post, find_post1, insert_post, delete_post, update_post
+from fics import get_posts, find_post, find_post1, insert_post, delete_post, update_post, update_post1
 import pandas as pd
 from fic import blog_posts
 from datetime import date
@@ -55,8 +55,8 @@ def addpost():
             }
             existing_post = find_post(post_data['Permalink'])
             if existing_post:
-                print("alr exists")
-                return render_template('addpost.html', post_data=post_data, update=False)
+                error = "This link already exists!"
+                return render_template('addpost.html', post_data=post_data, error=error)
             else:
                 insert_post(post_data) 
                 return redirect(url_for('pages.home'))
@@ -69,11 +69,6 @@ def editpost():
         if request.method == 'GET':
             return render_template('editpost.html', post_data={})
         else:
-            if(session.get("PostId") == None):
-                if(request.form["PostId"] != None):
-                    session['PostId'] = request.form["PostId"]
-                    return redirect(url_for('pages.editpost'))
-
             post_data = {
                 'UserID': session['user_id'],
                 'Title': request.form['post-title'],
@@ -81,16 +76,15 @@ def editpost():
                 'Content': request.form['post-content'],
                 'Permalink': request.form['post-link'],
                 'Tags:': request.form['post-tags'],
-                'PostId': session.get("PostId")
             }
-            print(post_data['Permalink'])
-            existing_post = find_post1(post_data['PostId'])
+            existing_post = find_post(post_data['Permalink'])
             if existing_post:
+                post_data.update({'PostId': existing_post['PostId']})
                 update_post(post_data) 
-                session['PostId'] = None
                 return redirect(url_for('pages.home'))
             else:
-                return redirect(url_for('pages.home'))
+                error1 = 'Link does not exist.'
+                return render_template('editpost.html', post_data={}, error1=error1)
     else:
         return redirect(url_for('auth.login_page'))
 
