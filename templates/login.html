@@ -10,24 +10,38 @@
   </head>
   <body>
     <main>
-        <h1>Login</h1>
-        <div class="container">
-            <form method="POST" action="{{url_for('auth.login_page')}}">
-                <p>{{error}}</p>
-                <input type="text" name="username" autocomplete="off" placeholder="Username" required>
-                <input type="password" name="password" autocomplete="off"  placeholder="Password" required>
-                <input type="submit" value="Login">
-            </form>
+      <h1 class="title">The Archive</h1>  
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+          <a class="navbar-brand" href="#">
+          </a>
+        </nav>
+        <div id="login_page" class='container px-4 py-4 bg-gray'>
+          <h2>Login</h2>
+          <div class="form-group container">
+              <form method="POST" action="{{url_for('auth.login_page')}}">
+                  <p>{{error}}</p>
+                  <br>
+                  <input id="form" class="form-control" type="text" name="username" autocomplete="off" placeholder="Username" required>
+                  <input id="form" class="form-control" type="password" name="password" autocomplete="off"  placeholder="Password" required>
+                  <input id="form" type="submit" value="Login">
+              </form>
+          </div>
         </div>
         
-        <h1>Don't have an account? Sign up here.</h1>
-        <div class="container">
-           <form method="POST" action="{{url_for('auth.signup')}}">
-              <input type="text" name="username" placeholder="Username" required>
-              <input type="password" name="password" placeholder="Password" required>
-             <input type="password" name="confirm-password" placeholder="Confirm Password" required>
-              <input type="submit" value="Sign up">
-           </form>
+        <hr class="col-3 col-md-2 mb-5">
+
+        <div id="login_page" class='container px-4 py-4 bg-gray'>
+          <h2>Don't have an account? Sign up here.</h2>
+          <div class="form-group container">
+            <form method="POST" action="{{url_for('auth.signup')}}">
+                <p>{{msg}}</p>
+                <br>
+                <input id="form" class="form-control" type="text" name="username" autocomplete="off" placeholder="Username" required>
+                <input id="form" class="form-control" type="password" name="password" autocomplete="off" placeholder="Password" required>
+                <input id="form" class="form-control" type="password" name="confirm-password" autocomplete="off" placeholder="Confirm Password" required>
+                <input id="form" type="submit" value="Sign up">
+            </form>
+          </div>
         </div>
     </main>
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>

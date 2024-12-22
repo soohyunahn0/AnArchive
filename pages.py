@@ -1,6 +1,6 @@
 from connection import get_db
 from flask import Flask, Blueprint, render_template, redirect, session, url_for, request
-from fics import get_posts, find_post, find_post1, insert_post, delete_post, update_post, update_post1
+from fics import get_posts, find_post, find_post1, insert_post, delete_post, update_post
 import pandas as pd
 from fic import blog_posts
 from datetime import date
@@ -28,13 +28,6 @@ def welcome():
 def profile():
     if session.get("logged_in"):
         return render_template('profile.html')
-    else:
-        return redirect(url_for('auth.login_page'))
-    
-@pages_bp.route("/search")
-def search():
-    if session.get("logged_in"):
-        return render_template('search.html')
     else:
         return redirect(url_for('auth.login_page'))
     

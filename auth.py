@@ -47,4 +47,4 @@ def signup():
         else:
             msg = create_account(username, password)
 
-        return render_template('login.html', error=msg)
+        return render_template('login.html', msg=msg)

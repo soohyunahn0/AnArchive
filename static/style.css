@@ -21,3 +21,13 @@
     object-position: 25% 25%;
     border-radius: 10px;
 }
+
+#login_page{
+    max-width: fit-content;
+    margin-left: 5%;
+    margin-right: auto;
+}
+
+#form{
+    margin-bottom: 10px;
+}
