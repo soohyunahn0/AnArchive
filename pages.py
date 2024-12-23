@@ -1,6 +1,6 @@
 from connection import get_db
 from flask import Flask, Blueprint, render_template, redirect, session, url_for, request
-from fics import get_posts, find_post, find_post1, insert_post, delete_post, update_post
+from fics import get_posts, get_user_posts, find_post, find_post1, insert_post, delete_post, update_post
 import pandas as pd
 from fic import blog_posts
 from datetime import date
@@ -11,7 +11,7 @@ pages_bp = Blueprint('pages', __name__)
 @pages_bp.route("/")
 def home():
     if session.get("logged_in"):
-        posts = get_posts()
+        posts = get_user_posts(session["user_id"])
         session["PostId"] = None
         return render_template('index.html', posts=posts, id=session["user_id"])
     else:
@@ -42,8 +42,8 @@ def addpost():
                 'Title': request.form['post-title'],
                 'Author': request.form['post-author'],
                 'Content': request.form['post-content'],
+                'Tags': request.form['post-tags'],
                 'Permalink': request.form['post-link'],
-                'Tags:': '',
                 'published_on': date.today()
             }
             existing_post = find_post(post_data['Permalink'])

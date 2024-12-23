@@ -46,20 +46,27 @@
         {% endmacro %}
         {% macro render_posts(posts) %}
           {% if posts.UserID == id %}
-            <li><a href="{{ posts.Permalink }}">{{ posts.Title }}</a>
-              <ul>Your Summary: {{ posts.Content }}</ul>
-              <ul>{{ render_tags(posts) }}</ul>
+            <li>
+              <a id="post_title" href="{{ posts.Permalink }}">{{ posts.Title }}</a>
+              <ul id="post_summary">Your Summary: {{ posts.Content }}</ul>
+              <br>
+              <ul>Tags: {{ render_tags(posts) }}</ul>
+              <br>
               <ul>Date Posted: {{posts.published_on}}</ul>
+              <br>
             </li>
             <form action="{{ url_for('pages.deletepost') }}" method="POST">
               <input class="ui button secondary" name="Link" type="hidden" value="{{posts.Permalink}}">
-              <input class="ui button secondary" name="submit" type="submit" value="Delete">
+              <input class="ui button secondary btn btn-secondary" name="submit" type="submit" value="Delete">
             </form>
           {% endif %}
         {% endmacro %}
           <ul>
         {% for post in posts %}
+          <div id="posts" class="container px-4 py-4 bg-gray">
           {{ render_posts(post) }}
+          </div>
+          <hr class="col-3 col-md-2 mb-5">
         {% endfor %}
           </ul>
     </main>

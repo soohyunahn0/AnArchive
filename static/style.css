@@ -31,3 +31,15 @@
 #form{
     margin-bottom: 10px;
 }
+
+#posts{
+    margin-left: 7%;
+}
+
+#post_title{
+    padding: 1%;
+}
+
+#post_summary{
+    margin-top: 1%;
+}

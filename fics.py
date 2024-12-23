@@ -52,13 +52,12 @@ def get_posts():
     saved_posts = data.fetchall()
     return saved_posts
 
-#def get_user_posts():
-#    connection = get_db()
-#    sql = connection.cursor()
-#    curr_id = currentsess()
-#    data = sql.execute('''select * from BlogPosts where UserID=?''', curr_id)
-#    saved_posts = data.fetchall()
-#    return saved_posts
+def get_user_posts(user_id):
+    connection = get_db()
+    sql = connection.cursor()
+    data = sql.execute('''select * from BlogPosts where UserID=?''', [user_id])
+    saved_posts = data.fetchall()
+    return saved_posts
 
 def count_posts():
     connection = get_db()
