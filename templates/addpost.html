@@ -37,14 +37,15 @@
               </ul>
           </div>
       </nav>
+        <h4 id="form_text">Your New Post:</h4>
         <form action="{{ url_for('pages.addpost') }}" method="POST">
-            <input type="text" placeholder="Title" name="post-title" value="{{post_data['Title']}}">
-            <input type="text" placeholder="Author" name="post-author" value="{{post_data['Author']}}">
-            <input type="text" placeholder="Content" name="post-content" value="{{post_data['Content']}}">
-            <input type="text" placeholder="Tags(Separate by Commas)" name="post-tags" value="{{post_data['Tags']}}">
-            <input type="text" placeholder="Link" name="post-link" value="{{post_data['Link']}}">
-            <input class="ui button secondary" name="submit" type="submit" value="Submit">
-            <p>{{error}}</p>
+            <input id="form" class="form-control" type="text" placeholder="Title" name="post-title" value="{{post_data['Title']}}">
+            <input id="form" class="form-control" type="text" placeholder="Author" name="post-author" value="{{post_data['Author']}}">
+            <input id="form" class="form-control" type="text" placeholder="Content" name="post-content" value="{{post_data['Content']}}">
+            <input id="form" class="form-control" type="text" placeholder="Tags(Separate by Commas)" name="post-tags" value="{{post_data['Tags']}}">
+            <input id="form" class="form-control" type="text" placeholder="Link" name="post-link" value="{{post_data['Link']}}">
+            <input id="form" class="ui button secondary btn btn-secondary" name="submit" type="submit" value="Submit">
+            <p id="form_text">{{error}}</p>
         </form>
     </main>
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>

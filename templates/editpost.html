@@ -38,16 +38,16 @@
           </div>
       </nav>
         <form action="{{ url_for('pages.editpost') }}" method="POST">
-          <h4>Your Post/Link:</h4>
-          <input type="text" placeholder="Link" name="post-link" value="{{post_data['Permalink']}}">
+          <h4 id="form_text">Your Post/Link:</h4>
+          <input id="form" class="form-control" type="text" placeholder="Link" name="post-link" value="{{post_data['Permalink']}}">
 
-          <h4>Your Edits:</h4>
-            <input type="text" placeholder="Title" name="post-title" value="{{post_data['Title']}}">
-            <input type="text" placeholder="Author" name="post-author" value="{{post_data['Author']}}">
-            <input type="text" placeholder="Content" name="post-content" value="{{post_data['Content']}}">
-            <input type="text" placeholder="Tags(Separate By Commas)" name="post-tags" value="{{post_data['Tags']}}">
-            <input class="ui button secondary" name="submit" type="submit" value="Submit">
-            <p>{{error1}}</p>
+          <h4 id="form_text">Your Edits:</h4>
+            <input id="form" class="form-control" type="text" placeholder="Title" name="post-title" value="{{post_data['Title']}}">
+            <input id="form" class="form-control" type="text" placeholder="Author" name="post-author" value="{{post_data['Author']}}">
+            <input id="form" class="form-control" type="text" placeholder="Content" name="post-content" value="{{post_data['Content']}}">
+            <input id="form" class="form-control" type="text" placeholder="Tags(Separate By Commas)" name="post-tags" value="{{post_data['Tags']}}">
+            <input id="form" class="ui button secondary btn btn-secondary" name="submit" type="submit" value="Submit">
+            <p id="form_text">{{error1}}</p>
         </form>
     </main>
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>

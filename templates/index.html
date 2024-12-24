@@ -43,6 +43,9 @@
           {% if posts.Tags != "" %}
             <ul>Tags: {{ posts.Tags }}</ul>
           {% endif %}
+          {% if posts.Tags == "" %}
+            <ul>Tags: None</ul>
+          {% endif %}   
         {% endmacro %}
         {% macro render_posts(posts) %}
           {% if posts.UserID == id %}
@@ -50,7 +53,7 @@
               <a id="post_title" href="{{ posts.Permalink }}">{{ posts.Title }}</a>
               <ul id="post_summary">Your Summary: {{ posts.Content }}</ul>
               <br>
-              <ul>Tags: {{ render_tags(posts) }}</ul>
+              <ul>{{ render_tags(posts) }}</ul>
               <br>
               <ul>Date Posted: {{posts.published_on}}</ul>
               <br>
