@@ -29,23 +29,28 @@
 }
 
 #form{
+    max-width: 90%;
     margin-left: 5%;
     margin-right: 5%;
     margin-bottom: 10px;
 }
 
 #form_text{
+    max-width: 90%;
     margin: 1%;
 }
 
 #posts{
+    max-width: 90%;
     margin-left: 7%;
 }
 
 #post_title{
+    max-width: 90%;
     padding: 1%;
 }
 
 #post_summary{
+    max-width: 90%;
     margin-top: 1%;
 }

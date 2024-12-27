@@ -5,19 +5,19 @@ def setup_profile():
     sql = connection.cursor()
     sql.execute('''CREATE TABLE if not exists profile
     (
-        "userId" INTEGER,
+        "UserId" INTEGER,
         "FirstName" Text,
         "LastName" Text,
         "Email" Text,
         "Bio" Text,
         "ProfileImage" Text,
-        foreign key(userId) references users(userId)
+        foreign key(UserId) references users(UserId)
     )''')
 
 def create_profile(user_id):
     connection = get_db()
     sql = connection.cursor()
-    sql.execute('''insert into profile (userId, FirstName,
+    sql.execute('''insert into profile (UserId, FirstName,
          LastName, Email, Bio, ProfileImage) values(?,?,?,?,?,?) ''', 
          [user_id, "Famous", "Panda", "panda@xyz.com", "Something about a panda", "user.png"])
     connection.commit()
