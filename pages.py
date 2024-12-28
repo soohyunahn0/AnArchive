@@ -1,6 +1,7 @@
 from connection import get_db
 from flask import Flask, Blueprint, render_template, redirect, session, url_for, request
 from fics import get_posts, get_user_posts, find_post, find_post1, insert_post, delete_post, update_post
+from user import get_profile, update_profile
 import pandas as pd
 from fic import blog_posts
 from datetime import date
@@ -17,17 +18,26 @@ def home():
     else:
         return redirect(url_for('auth.login_page'))
 
-@pages_bp.route("/welcome")
-def welcome():
-    if session.get("logged_in"):
-        return render_template('enter.html')
-    else:
-        return redirect(url_for('auth.login_page'))
-
-@pages_bp.route("/profile")
+@pages_bp.route("/profile", methods=['GET', 'POST'])
 def profile():
     if session.get("logged_in"):
-        return render_template('profile.html')
+        profile = get_profile(session['user_id'])
+        if request.method == 'GET':
+            return render_template('profile.html', profile_data={}, profile=profile)
+        else:
+            profile_data = {
+                'UserID': session['user_id'],
+                'FirstName': request.form['FirstName'],
+                'LastName': request.form['LastName'],
+                'Email': request.form['Email'],
+                'Bio': request.form['Bio'],
+            }
+            update_profile(profile_data['UserID'], 
+                           profile_data['FirstName'], 
+                           profile_data['LastName'], 
+                           profile_data['Email'], 
+                           profile_data['Bio'])
+            return render_template('profile.html', profile_data=profile_data, profile=profile, msg="Your Profile Was Updated!")
     else:
         return redirect(url_for('auth.login_page'))
     

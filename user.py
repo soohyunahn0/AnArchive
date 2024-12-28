@@ -10,7 +10,6 @@ def setup_profile():
         "LastName" Text,
         "Email" Text,
         "Bio" Text,
-        "ProfileImage" Text,
         foreign key(UserId) references users(UserId)
     )''')
 
@@ -18,17 +17,17 @@ def create_profile(user_id):
     connection = get_db()
     sql = connection.cursor()
     sql.execute('''insert into profile (UserId, FirstName,
-         LastName, Email, Bio, ProfileImage) values(?,?,?,?,?,?) ''', 
-         [user_id, "Famous", "Panda", "panda@xyz.com", "Something about a panda", "user.png"])
+         LastName, Email, Bio, ProfileImage) values(?,?,?,?,?) ''', 
+         [user_id, "Famous", "Panda", "panda@xyz.com", "Something about a panda"])
     connection.commit()
 
-def update_profile(user_id, first_name, last_name, email, bio, image_url):
+def update_profile(user_id, first_name, last_name, email, bio):
     connection = get_db()
     sql = connection.cursor()
     sql.execute('''update profile set FirstName = ?,
-                   LastName = ?, Email = ?, Bio = ?, profileImage = ?
+                   LastName = ?, Email = ?, Bio = ?
                    where userId = ?''', 
-                [first_name, last_name, email, bio, image_url, user_id])
+                [first_name, last_name, email, bio, user_id])
     connection.commit()
 
 def get_profile(user_id):
