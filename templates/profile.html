@@ -42,24 +42,28 @@
              </ul>
           </div>
       </nav>
-      <div>
+      <div class="profile">
+        <h4>Your Profile</h4>
         <br>
-        <p>Your Name: {{ profile.FirstName }} {{ profile.LastName }}</p>
+        <p id="form">Your Name: {{ profile.FirstName }} {{ profile.LastName }}</p>
         <br>
-        <p>Email: {{ profile.Email }}</p>
+        <p id="form">Email: {{ profile.Email }}</p>
         <br>
-        <p>Your Bio: {{ profile.Bio }}</p>
+        <p id="form">Your Bio: {{ profile.Bio }}</p>
         <br>
       </div>
-      <h5 id="form_text">{{msg}}</h5>
-      <form action="{{ url_for('pages.profile') }}" method="POST">
-        <h4 id="form_text">Edit Your Profile:</h4>
-          <input id="form" class="form-control" type="text" placeholder="First Name" name="FirstName" value="{{profile_data['FirstName']}}">
-          <input id="form" class="form-control" type="text" placeholder="Last Name" name="LastName" value="{{profile_data['LastName']}}">
-          <input id="form" class="form-control" type="text" placeholder="Email" name="Email" value="{{profile_data['Email']}}">
-          <input id="form" class="form-control" type="text" placeholder="Bio" name="Bio" value="{{profile_data['Bio']}}">
-          <input id="form" class="ui button secondary btn btn-secondary" name="submit" type="submit" value="Submit">
-      </form>
+      <hr class="col-3 col-md-2 mb-5">
+      <div class="profile">
+        <h5 id="form_text">{{msg}}</h5>
+        <form action="{{ url_for('pages.profile') }}" method="POST">
+          <h4 id="form_text">Edit Your Profile:</h4>
+            <input id="form" class="form-control" type="text" placeholder="First Name" name="FirstName" value="{{profile_data['FirstName']}}">
+            <input id="form" class="form-control" type="text" placeholder="Last Name" name="LastName" value="{{profile_data['LastName']}}">
+            <input id="form" class="form-control" type="text" placeholder="Email" name="Email" value="{{profile_data['Email']}}">
+            <input id="form" class="form-control" type="text" placeholder="Bio" name="Bio" value="{{profile_data['Bio']}}">
+            <input id="form" class="ui button secondary btn btn-secondary" name="submit" type="submit" value="Submit">
+        </form>
+      </div>
     </main>
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 	<script src="script.js"></script>

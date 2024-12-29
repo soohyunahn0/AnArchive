@@ -11,7 +11,7 @@
   <body>
     <main>
         <div style="float:right;" id="date"></div>
-        <h1 class="title">Your Archive</h1>  
+        <h1 class="title">Add Post</h1>  
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
           <a class="navbar-brand" href="#">
               <img src="{{ url_for('static', filename='images/newspaper.jpg') }}" width="50px" height="50px" alt="">
@@ -42,6 +42,7 @@
               </ul>
           </div>
       </nav>
+      <div class="profile">
         <h4 id="form_text">Your New Post:</h4>
         <form action="{{ url_for('pages.addpost') }}" method="POST">
             <input id="form" class="form-control" type="text" placeholder="Title" name="post-title" value="{{post_data['Title']}}">
@@ -52,6 +53,7 @@
             <input id="form" class="ui button secondary btn btn-secondary" name="submit" type="submit" value="Submit">
             <p id="form_text">{{error}}</p>
         </form>
+        </div>
     </main>
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 	<script src="script.js"></script>
