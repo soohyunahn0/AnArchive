@@ -23,5 +23,13 @@ app.register_blueprint(pages_bp, url_prefix="/pages")
 def base():
     return redirect(url_for('auth.login_page'))
 
+@app.errorhandler(404)
+def error(e):
+    return render_template('404.html'), 404
+
+@app.errorhandler(500)
+def error(e):
+    return render_template('500.html'), 500
+
 if __name__ == "__main__":
     app.run(debug=True)
