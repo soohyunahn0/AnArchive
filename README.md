@@ -22,7 +22,7 @@ $ python -m flask run
  * Serving Flask app 
  * Running on http://127.0.0.1:5000 (Press CTRL+C to quit)
 
-
+##
 
 Image(s) Used: 
 https://www.istockphoto.com/vector/flat-black-newspaper-vector-icon-gm1180200398-330538531
