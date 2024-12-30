@@ -1,14 +1,14 @@
-##[Create an Environment]
+## Create an Environment
 
 https://flask.palletsprojects.com/en/stable/installation/
 
 
-##[To Install Flask:]
+## To Install Flask:
 
 $ pip install Flask
 
 
-##[To Run the Application(Development Server):]
+## To Run the Application(Development Server):
 
 Use the flask command or python -m flask. You need to tell the Flask where your application is with the --app option.
 
