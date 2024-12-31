@@ -29,7 +29,7 @@ def insert_post(post):
     sql = connection.cursor()
     post_items = post.values()
     sql.execute('''
-        Insert into BlogPosts (UserID, Title, Author, Content, Permalink, Tags, published_on)
+        Insert into BlogPosts (UserID, Title, Author, Content, Tags, Permalink, published_on)
         values(?, ?, ?, ?, ? ,?, ?)
     ''', list(post_items))
     connection.commit()
