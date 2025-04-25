@@ -9,7 +9,6 @@ from pages import pages_bp
 from fics import create_post_table
 
 app = Flask(__name__)
-app.secret_key = '190s@aFK!a!@#J29a&&*^da'
 
 with app.app_context():
     create_table()
