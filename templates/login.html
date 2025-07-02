@@ -1,48 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Login</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <link rel="stylesheet" href="{{url_for('static', filename='style.css')}}">
-  </head>
-  <body>
-    <main>
-      <h1 class="title">The Archive</h1>  
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-          <a class="navbar-brand" href="#">
-          </a>
-        </nav>
-        <div id="login_page" class='container px-4 py-4 bg-gray'>
-          <h2>Login</h2>
-          <div class="form-group container">
-              <form method="POST" action="{{url_for('auth.login_page')}}">
-                  <p>{{error}}</p>
-                  <br>
-                  <input id="form" class="form-control" type="text" name="username" autocomplete="off" placeholder="Username" required>
-                  <input id="form" class="form-control" type="password" name="password" autocomplete="off"  placeholder="Password" required>
-                  <input id="form" class="ui button secondary btn btn-secondary" type="submit" value="Login">
-              </form>
-          </div>
-        </div>
-        <hr class="col-3 col-md-2 mb-5">
-        <div id="login_page" class='container px-4 py-4 bg-gray'>
-          <h2>Don't have an account? Sign up here.</h2>
-          <div class="form-group container">
-            <form method="POST" action="{{url_for('auth.signup')}}">
-                <p>{{msg}}</p>
-                <br>
-                <input id="form" class="form-control" type="text" name="username" autocomplete="off" placeholder="Username" required>
-                <input id="form" class="form-control" type="password" name="password" autocomplete="off" placeholder="Password" required>
-                <input id="form" class="form-control" type="password" name="confirm-password" autocomplete="off" placeholder="Confirm Password" required>
-                <input id="form" class="ui button secondary btn btn-secondary" type="submit" value="Sign up">
-            </form>
-          </div>
-        </div>
-    </main>
-    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-	<script src="script.js"></script>
-  </body>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>Login</title>
+  <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+    crossorigin="anonymous"
+  />
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+</head>
+<body>
+  <main class="container text-center">
+    <h1 class="title">The Archive</h1>
+
+    <div class="form-container mx-auto mb-5">
+      <h2>Login</h2>
+      <form method="POST" action="{{ url_for('auth.login_page') }}">
+        {% if error %}
+          <p class="error-message">{{ error }}</p>
+        {% endif %}
+        <input class="form-control" type="text" name="username" autocomplete="off" placeholder="Username" required />
+        <input class="form-control" type="password" name="password" autocomplete="off" placeholder="Password" required />
+        <input class="btn btn-secondary btn-block" type="submit" value="Login" />
+      </form>
+    </div>
+
+    <div class="form-container mx-auto">
+      <h2>Don't have an account? Sign up here.</h2>
+      <form method="POST" action="{{ url_for('auth.signup') }}">
+        {% if msg %}
+          <p class="msg-message">{{ msg }}</p>
+        {% endif %}
+        <input class="form-control" type="text" name="username" autocomplete="off" placeholder="Username" required />
+        <input class="form-control" type="password" name="password" autocomplete="off" placeholder="Password" required />
+        <input class="form-control" type="password" name="confirm-password" autocomplete="off" placeholder="Confirm Password" required />
+        <input class="btn btn-secondary btn-block" type="submit" value="Sign up" />
+      </form>
+    </div>
+  </main>
+
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <script src="script.js"></script>
+</body>
 </html>

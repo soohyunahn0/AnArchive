@@ -1,71 +1,75 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>An Archive</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <link rel="stylesheet" href="{{url_for('static', filename='style.css')}}">
-  </head>
-  <body>
-    <main>
-        <div style="float:right;" id="date"></div>
-        <h1 class="title">Your Profile</h1>  
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-          <a class="navbar-brand" href="#">
-              <img src="{{ url_for('static', filename='images/newspaper.jpg') }}" width="50px" height="50px" alt="">
-          </a>
-          <div class="collapse navbar-collapse" id="navbarNav">
-              <ul class="navbar-nav">
-                  <li class="nav-item active">
-                  <a class="nav-link" href="{{ url_for('pages.home') }}">Archive</a>
-                  </li>
-              </ul>
-            <ul class="navbar-nav">
-                <li class="nav-item active">
-                <a class="nav-link" href="{{ url_for('pages.profile') }}">Profile</a>
-                </li>
-              </ul>
-            <ul class="navbar-nav">
-              <li class="nav-item active">
-              <a class="nav-link" href="{{ url_for('pages.addpost') }}">Add Post</a>
-              </li>
-            </ul>
-            <ul class="navbar-nav">
-              <li class="nav-item active">
-              <a class="nav-link" href="{{ url_for('pages.editpost') }}">Edit Post</a>
-              </li>
-            </ul>
-            <ul class="form-inline ml-auto">
-                  <a href="{{url_for('auth.logout')}}">Logout</a>
-             </ul>
-          </div>
-      </nav>
-      <div class="profile">
-        <h4>Your Profile</h4>
-        <br>
-        <p id="form">Your Name: {{ profile.FirstName }} {{ profile.LastName }}</p>
-        <br>
-        <p id="form">Email: {{ profile.Email }}</p>
-        <br>
-        <p id="form">Your Bio: {{ profile.Bio }}</p>
-        <br>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>Your Profile</title>
+  <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+    crossorigin="anonymous"
+  />
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+</head>
+<body>
+  <main class="container">
+    <div id="date"></div>
+    <h1 class="title">Your Profile</h1>
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light rounded">
+      <a class="navbar-brand" href="#">
+        <img src="{{ url_for('static', filename='images/newspaper.jpg') }}" width="50" height="50" alt="Logo" />
+      </a>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="{{ url_for('pages.home') }}">Archive</a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="{{ url_for('pages.profile') }}">Profile</a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="{{ url_for('pages.addpost') }}">Add Post</a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="{{ url_for('pages.editpost') }}">Edit Post</a>
+          </li>
+        </ul>
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="{{ url_for('auth.logout') }}">Logout</a>
+          </li>
+        </ul>
       </div>
-      <hr class="col-3 col-md-2 mb-5">
-      <div class="profile">
-        <h5 id="form_text">{{msg}}</h5>
-        <form action="{{ url_for('pages.profile') }}" method="POST">
-          <h4 id="form_text">Edit Your Profile:</h4>
-            <input id="form" class="form-control" type="text" placeholder="First Name" name="FirstName" value="{{profile_data['FirstName']}}">
-            <input id="form" class="form-control" type="text" placeholder="Last Name" name="LastName" value="{{profile_data['LastName']}}">
-            <input id="form" class="form-control" type="text" placeholder="Email" name="Email" value="{{profile_data['Email']}}">
-            <input id="form" class="form-control" type="text" placeholder="Bio" name="Bio" value="{{profile_data['Bio']}}">
-            <input id="form" class="ui button secondary btn btn-secondary" name="submit" type="submit" value="Submit">
-        </form>
-      </div>
-    </main>
-    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-	<script src="script.js"></script>
-  </body>
+    </nav>
+
+    <div class="profile-card">
+      <h4>Profile Overview</h4>
+      <p><strong>Your Name:</strong> {{ profile.FirstName }} {{ profile.LastName }}</p>
+      <p><strong>Email:</strong> {{ profile.Email }}</p>
+      <p><strong>Your Bio:</strong> {{ profile.Bio }}</p>
+    </div>
+
+    <hr class="col-3 col-md-2 mb-5">
+
+    <div class="profile-card">
+      {% if msg %}
+        <h5 class="text-success">{{ msg }}</h5>
+      {% endif %}
+      <h4>Edit Your Profile</h4>
+      <form action="{{ url_for('pages.profile') }}" method="POST">
+        <input class="form-control" type="text" placeholder="First Name" name="FirstName" value="{{ profile_data['FirstName'] }}">
+        <input class="form-control" type="text" placeholder="Last Name" name="LastName" value="{{ profile_data['LastName'] }}">
+        <input class="form-control" type="email" placeholder="Email" name="Email" value="{{ profile_data['Email'] }}">
+        <input class="form-control" type="text" placeholder="Bio" name="Bio" value="{{ profile_data['Bio'] }}">
+        <input class="btn btn-secondary btn-block" type="submit" value="Submit">
+      </form>
+    </div>
+  </main>
+
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <script src="script.js"></script>
+</body>
 </html>

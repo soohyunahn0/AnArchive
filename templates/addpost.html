@@ -1,61 +1,69 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>An Archive</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <link rel="stylesheet" href="{{url_for('static', filename='style.css')}}">
-  </head>
-  <body>
-    <main>
-        <div style="float:right;" id="date"></div>
-        <h1 class="title">Add Post</h1>  
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-          <a class="navbar-brand" href="#">
-              <img src="{{ url_for('static', filename='images/newspaper.jpg') }}" width="50px" height="50px" alt="">
-          </a>
-          <div class="collapse navbar-collapse" id="navbarNav">
-              <ul class="navbar-nav">
-                  <li class="nav-item active">
-                  <a class="nav-link" href="{{ url_for('pages.home') }}">Archive</a>
-                  </li>
-              </ul>
-              <ul class="navbar-nav">
-                <li class="nav-item active">
-                <a class="nav-link" href="{{ url_for('pages.profile') }}">Profile</a>
-                </li>
-              </ul>
-            <ul class="navbar-nav">
-              <li class="nav-item active">
-              <a class="nav-link" href="{{ url_for('pages.addpost') }}">Add Post</a>
-              </li>
-            </ul>
-            <ul class="navbar-nav">
-              <li class="nav-item active">
-              <a class="nav-link" href="{{ url_for('pages.editpost') }}">Edit Post</a>
-              </li>
-            </ul>
-              <ul class="form-inline ml-auto">
-                  <a href="{{url_for('auth.logout')}}">Logout</a>
-              </ul>
-          </div>
-      </nav>
-      <div class="profile">
-        <h4 id="form_text">Your New Post:</h4>
-        <form action="{{ url_for('pages.addpost') }}" method="POST">
-            <input id="form" class="form-control" type="text" placeholder="Title" name="post-title" value="{{post_data['Title']}}">
-            <input id="form" class="form-control" type="text" placeholder="Author" name="post-author" value="{{post_data['Author']}}">
-            <input id="form" class="form-control" type="text" placeholder="Content" name="post-content" value="{{post_data['Content']}}">
-            <input id="form" class="form-control" type="text" placeholder="Tags(Separate by Commas)" name="post-tags" value="{{post_data['Tags']}}">
-            <input id="form" class="form-control" type="text" placeholder="Link" name="post-link" value="{{post_data['Link']}}">
-            <input id="form" class="ui button secondary btn btn-secondary" name="submit" type="submit" value="Submit">
-            <p id="form_text">{{error}}</p>
-        </form>
-        </div>
-    </main>
-    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-	<script src="script.js"></script>
-  </body>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>Add Post</title>
+  <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+    crossorigin="anonymous"
+  />
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+  <style>
+  </style>
+</head>
+<body>
+  <main class="container">
+    <div id="date"></div>
+    <h1 class="title">Add Post</h1>
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light rounded">
+      <a class="navbar-brand" href="#">
+        <img src="{{ url_for('static', filename='images/newspaper.jpg') }}" width="50" height="50" alt="Logo" />
+      </a>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="{{ url_for('pages.home') }}">Archive</a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="{{ url_for('pages.profile') }}">Profile</a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="{{ url_for('pages.addpost') }}">Add Post</a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="{{ url_for('pages.editpost') }}">Edit Post</a>
+          </li>
+        </ul>
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="{{ url_for('auth.logout') }}">Logout</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <div class="form-card">
+      <h4 class="mb-4">Your New Post</h4>
+      <form action="{{ url_for('pages.addpost') }}" method="POST">
+        <input class="form-control" type="text" placeholder="Title" name="post-title" value="{{ post_data['Title'] }}">
+        <input class="form-control" type="text" placeholder="Author" name="post-author" value="{{ post_data['Author'] }}">
+        <input class="form-control" type="text" placeholder="Content" name="post-content" value="{{ post_data['Content'] }}">
+        <input class="form-control" type="text" placeholder="Tags (Separate by commas)" name="post-tags" value="{{ post_data['Tags'] }}">
+        <input class="form-control" type="text" placeholder="Link" name="post-link" value="{{ post_data['Link'] }}">
+        <input class="btn btn-secondary btn-block" type="submit" value="Submit">
+        {% if error %}
+          <p id="form_text">{{ error }}</p>
+        {% endif %}
+      </form>
+    </div>
+  </main>
+
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <script src="script.js"></script>
+</body>
 </html>

@@ -17,7 +17,7 @@ def create_profile(user_id):
     connection = get_db()
     sql = connection.cursor()
     sql.execute('''insert into profile (UserId, FirstName,
-         LastName, Email, Bio, ProfileImage) values(?,?,?,?,?) ''', 
+         LastName, Email, Bio) values(?,?,?,?,?) ''', 
          [user_id, "Famous", "Panda", "panda@xyz.com", "Something about a panda"])
     connection.commit()
 
