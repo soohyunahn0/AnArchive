@@ -48,14 +48,15 @@
     <div class="form-card">
       <form action="{{ url_for('pages.editpost') }}" method="POST">
         <h4 class="mb-3">Your Post/Link</h4>
-        <input class="form-control" type="text" placeholder="Link" name="post-link" value="{{ post_data['Permalink'] }}">
-
+        <input class="form-control" type="text" placeholder="Link" name="post-link" value="{{ post_data['Permalink'] if post_data else '' }}">
+        <input class="btn btn-secondary btn-block" type="submit" name="load-post" value="Load Post">
+        
         <h4 class="mt-4 mb-3">Your Edits</h4>
-        <input class="form-control" type="text" placeholder="Title" name="post-title" value="{{ post_data['Title'] }}">
-        <input class="form-control" type="text" placeholder="Author" name="post-author" value="{{ post_data['Author'] }}">
-        <input class="form-control" type="text" placeholder="Content" name="post-content" value="{{ post_data['Content'] }}">
-        <input class="form-control" type="text" placeholder="Tags (Separate by commas)" name="post-tags" value="{{ post_data['Tags'] }}">
-        <input class="btn btn-secondary btn-block" type="submit" value="Submit">
+        <input class="form-control" type="text" placeholder="{{ post_data['Title'] if post_data else 'Title' }}" name="post-title" value="{{ post_data['Title'] if post_data else '' }}">
+        <input class="form-control" type="text" placeholder="{{ post_data['Author'] if post_data else 'Author' }}" name="post-author" value="{{ post_data['Author'] if post_data else '' }}">
+        <input class="form-control" type="text" placeholder="{{ post_data['Content'] if post_data else 'Content' }}" name="post-content" value="{{ post_data['Content'] if post_data else '' }}">
+        <input class="form-control" type="text" placeholder="{{ post_data['Tags'] if post_data else 'Tags (Separate By Commas)' }}" name="post-tags" value="{{ post_data['Tags'] if post_data else '' }}">
+        <input class="btn btn-secondary btn-block" type="submit" name="update-post" value="Update Post">
 
         {% if error1 %}
           <p id="form_text">{{ error1 }}</p>

@@ -2,6 +2,7 @@ from connection import get_db
 from flask import Flask, Blueprint, render_template, redirect, session, url_for, request
 from fics import get_posts, get_user_posts, find_post, find_post1, insert_post, delete_post, update_post
 from user import get_profile, update_profile
+from scrape import Scraper
 import pandas as pd
 from fic import blog_posts
 from datetime import date
@@ -70,24 +71,46 @@ def addpost():
 def editpost():
     if session.get("logged_in"):
         if request.method == 'GET':
+            permalink = request.args.get('post-link')
+            if permalink:
+                existing_post = find_post(permalink)
+                if existing_post:
+                    return render_template('editpost.html', post_data=existing_post)
+                else:
+                    error1 = 'Post not found.'
+                    return render_template('editpost.html', post_data={}, error1=error1)
             return render_template('editpost.html', post_data={})
         else:
-            post_data = {
-                'UserID': session['user_id'],
-                'Title': request.form['post-title'],
-                'Author': request.form['post-author'],
-                'Content': request.form['post-content'],
-                'Permalink': request.form['post-link'],
-                'Tags:': request.form['post-tags'],
-            }
-            existing_post = find_post(post_data['Permalink'])
-            if existing_post:
-                post_data.update({'PostId': existing_post['PostId']})
-                update_post(post_data) 
-                return redirect(url_for('pages.home'))
-            else:
-                error1 = 'Link does not exist.'
-                return render_template('editpost.html', post_data={}, error1=error1)
+            if 'load-post' in request.form:
+                permalink = request.form['post-link']
+                if permalink:
+                    print("hi")
+                    existing_post = find_post(permalink)
+                    if existing_post:
+                        return render_template('editpost.html', post_data=existing_post)
+                    else:
+                        error1 = 'Post not found.'
+                        return render_template('editpost.html', post_data={}, error1=error1)
+                else:
+                    error1 = 'Please enter a post link.'
+                    return render_template('editpost.html', post_data={}, error1=error1)
+            else: 
+                post_data = {
+                    'UserID': session['user_id'],
+                    'Title': request.form['post-title'],
+                    'Author': request.form['post-author'],
+                    'Content': request.form['post-content'],
+                    'Permalink': request.form['post-link'],
+                    'Tags:': request.form['post-tags'],
+                }
+                existing_post = find_post(post_data['Permalink'])
+                if existing_post:
+                    post_data.update({'PostId': existing_post['PostId']})
+                    update_post(post_data) 
+                    return redirect(url_for('pages.home'))
+                else:
+                    error1 = 'Post not found.'
+                    return render_template('editpost.html', post_data={}, error1=error1)
     else:
         return redirect(url_for('auth.login_page'))
 

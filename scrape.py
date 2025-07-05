@@ -4,7 +4,7 @@ import time
 import json
 from urllib.parse import urljoin
 
-class AO3Scraper:
+class Scraper:
     def __init__(self):
         self.session = requests.Session()
         # Set a user agent to be respectful
@@ -23,7 +23,6 @@ class AO3Scraper:
             dict: Dictionary containing scraped information
         """
         try:
-            # Add delay to be respectful to AO3's servers
             time.sleep(1)
             
             response = self.session.get(url)
@@ -162,13 +161,13 @@ class AO3Scraper:
             work_data = self.scrape_work(url)
             if work_data:
                 results.append(work_data)
-                print(f"✓ Successfully scraped: {work_data['title']}")
+                print(f"Successfully scraped: {work_data['title']}")
             else:
-                print(f"✗ Failed to scrape: {url}")
+                print(f"Failed to scrape: {url}")
         
         return results
     
-    def save_to_json(self, data, filename='ao3_works.json'):
+    def save_to_json(self, data, filename='works.json'):
         """Save scraped data to JSON file"""
         with open(filename, 'w', encoding='utf-8') as f:
             json.dump(data, f, indent=2, ensure_ascii=False)
@@ -176,14 +175,14 @@ class AO3Scraper:
 
 # Example usage
 if __name__ == "__main__":
-    scraper = AO3Scraper()
+    scraper = Scraper()
     
     # Example URLs - replace with actual AO3 work URLs
-    urls = [
-        "https://archiveofourown.org/works/12345678",
-        "https://archiveofourown.org/works/87654321",
-        # Add more URLs as needed
-    ]
+    # urls = [
+    #    "https://archiveofourown.org/works/12345678",
+    #    "https://archiveofourown.org/works/87654321",
+    #     Add more URLs as needed
+    # ]
     
     # Scrape single work
     print("=== Scraping Single Work ===")

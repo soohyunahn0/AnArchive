@@ -16,3 +16,7 @@ if(hour < 10){
     hour = "0" + hour;
 }
 document.getElementById("date").innerHTML = hour + ":" + minute + " | " + m + "/" + d + "/" + y;
+
+function submitForm() {
+    document.getElementById('myForm').submit();
+}
