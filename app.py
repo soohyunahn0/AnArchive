@@ -6,6 +6,7 @@ from pages import pages_bp
 from fics import create_post_table
 
 app = Flask(__name__)
+app.secret_key = "ha9sh(HF*(2))"
 
 with app.app_context():
     create_table()
