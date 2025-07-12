@@ -13,15 +13,6 @@ class Scraper:
         })
     
     def scrape_work(self, url):
-        """
-        Scrape a single AO3 work page for title, author, tags, and summary.
-        
-        Args:
-            url (str): The URL of the AO3 work
-            
-        Returns:
-            dict: Dictionary containing scraped information
-        """
         try:
             time.sleep(1)
             
@@ -54,12 +45,10 @@ class Scraper:
             return None
     
     def _get_title(self, soup):
-        """Extract the work title"""
         title_elem = soup.find('h2', class_='title heading')
         return title_elem.get_text(strip=True) if title_elem else "No title found"
     
     def _get_author(self, soup):
-        """Extract the author name(s)"""
         author_elem = soup.find('h3', class_='byline heading')
         if author_elem:
             # Get all author links
@@ -70,7 +59,6 @@ class Scraper:
         return "No author found"
     
     def _get_tags(self, soup):
-        """Extract all tags (fandom, relationship, character, etc.)"""
         tags = {}
         
         # Fandom tags
@@ -103,7 +91,6 @@ class Scraper:
         return []
     
     def _get_summary(self, soup):
-        """Extract the work summary"""
         summary_elem = soup.find('div', class_='summary')
         if summary_elem:
             # Get the blockquote content, which contains the actual summary
@@ -113,7 +100,6 @@ class Scraper:
         return "No summary found"
     
     def _get_rating(self, soup):
-        """Extract the rating"""
         rating_elem = soup.find('dd', class_='rating tags')
         if rating_elem:
             rating_tag = rating_elem.find('a', class_='tag')
@@ -121,7 +107,6 @@ class Scraper:
         return "No rating found"
     
     def _get_warnings(self, soup):
-        """Extract warnings"""
         warnings_elem = soup.find('dd', class_='warning tags')
         if warnings_elem:
             warning_tags = warnings_elem.find_all('a', class_='tag')
@@ -129,7 +114,6 @@ class Scraper:
         return []
     
     def _get_word_count(self, soup):
-        """Extract word count"""
         stats = soup.find('dl', class_='stats')
         if stats:
             word_elem = stats.find('dd', class_='words')
@@ -137,7 +121,6 @@ class Scraper:
         return "Unknown"
     
     def _get_chapters(self, soup):
-        """Extract chapter information"""
         stats = soup.find('dl', class_='stats')
         if stats:
             chapter_elem = stats.find('dd', class_='chapters')
@@ -174,8 +157,8 @@ class Scraper:
         print(f"Data saved to {filename}")
 
 # Example usage
-if __name__ == "__main__":
-    scraper = Scraper()
+#if __name__ == "__main__":
+    # scraper = Scraper()
     
     # Example URLs - replace with actual AO3 work URLs
     # urls = [
@@ -185,13 +168,13 @@ if __name__ == "__main__":
     # ]
     
     # Scrape single work
-    print("=== Scraping Single Work ===")
-    single_work = scraper.scrape_work("https://archiveofourown.org/works/12345678")
-    if single_work:
-        print(f"Title: {single_work['title']}")
-        print(f"Author: {single_work['author']}")
-        print(f"Summary: {single_work['summary'][:100]}...")
-        print(f"Tags: {single_work['tags']}")
+    # print("=== Scraping Single Work ===")
+    # single_work = scraper.scrape_work("https://archiveofourown.org/works/12345678")
+    # if single_work:
+    #     print(f"Title: {single_work['title']}")
+    #     print(f"Author: {single_work['author']}")
+    #     print(f"Summary: {single_work['summary'][:100]}...")
+    #     print(f"Tags: {single_work['tags']}")
     
     # Scrape multiple works
     #print("\n=== Scraping Multiple Works ===")
