@@ -1,8 +1,6 @@
 from connection import get_db
 from fic import blog_posts
 from flask import Flask, render_template, request, redirect, url_for, flash, session
-import pandas as pd
-from datetime import date
 
 def create_post_table():
     connection = get_db()

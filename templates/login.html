@@ -17,6 +17,25 @@
   <main class="container text-center">
     <h1 class="title">The Archive</h1>
 
+    <div class="info-section">
+  <h4><i class="fas fa-archive"></i> Welcome to The Archive</h4>
+  <p class="lead mb-3">Your personal link collection and reading organizer.</p>
+  <div class="feature-list">
+    <div class="feature-item">
+      <i class="fas fa-link text-primary"></i>
+      <span><strong>Save Any Link:</strong> Simply paste a URL and we'll automatically extract the article title, author, and content</span>
+    </div>
+    <div class="feature-item">
+      <i class="fas fa-folder-open text-success"></i>
+      <span><strong>Organize Your Reading:</strong> Keep all your saved articles in one place with tags and categories</span>
+    </div>
+    <div class="feature-item">
+      <i class="fas fa-edit text-warning"></i>
+      <span><strong>Edit & Customize:</strong> Add your own notes, tags, and organize posts exactly how you want</span>
+    </div>
+  </div>
+</div>
+
     <div class="form-container mx-auto mb-5">
       <h2>Login</h2>
       <form method="POST" action="{{ url_for('auth.login_page') }}">
@@ -41,6 +60,13 @@
         <input class="btn btn-secondary btn-block" type="submit" value="Sign up" />
       </form>
     </div>
+    <footer class="footer bg-light rounded">
+    <div class="container">
+      <div>
+        <p>&copy; 2025 Archive. Made with ❤️ for organizing your reading.</p>
+      </div>
+    </div>
+  </footer>
   </main>
 
   <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>

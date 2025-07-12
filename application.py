@@ -1,7 +1,4 @@
 from flask import Flask, render_template, request, redirect, url_for
-import pandas as pd
-import random
-
 from users import create_table
 from user import setup_profile
 from auth import auth_bp

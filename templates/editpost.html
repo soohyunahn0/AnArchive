@@ -63,6 +63,28 @@
         {% endif %}
       </form>
     </div>
+    <footer class="footer bg-light rounded">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6">
+          <h5>Archive</h5>
+          <p>Your personal link collector platform.</p>
+        </div>
+        <div class="col-md-6">
+          <h5>Quick Links</h5>
+          <div>
+            <a href="{{ url_for('pages.home') }}">Archive</a>
+            <a href="{{ url_for('pages.profile') }}">Profile</a>
+            <a href="{{ url_for('pages.addpost') }}">Add Post</a>
+            <a href="{{ url_for('pages.editpost') }}">Edit Post</a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2025 Archive. Made with ❤️ for organizing your reading.</p>
+      </div>
+    </div>
+  </footer>
   </main>
 
   <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>

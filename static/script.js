@@ -20,3 +20,27 @@ document.getElementById("date").innerHTML = hour + ":" + minute + " | " + m + "/
 function submitForm() {
     document.getElementById('myForm').submit();
 }
+
+$(document).ready(function() {
+      $('#scrapeForm').on('submit', function(e) {
+        // Get references to the button elements
+        const scrapeBtn = $('#scrapeBtn');
+        const btnText = $('#btnText');
+        const loadingSpinner = $('#loadingSpinner');
+        
+        // Show loading state
+        btnText.text('Loading...');
+        loadingSpinner.show();
+        scrapeBtn.prop('disabled', true);
+        
+        // Optional: Add a timeout to reset the button if something goes wrong
+        setTimeout(function() {
+          // Only reset if the page hasn't redirected/reloaded
+          if (scrapeBtn.prop('disabled')) {
+            btnText.text('Scrape Link');
+            loadingSpinner.hide();
+            scrapeBtn.prop('disabled', false);
+          }
+        }, 30000); // 30 second timeout
+      });
+});

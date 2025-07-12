@@ -47,22 +47,47 @@
       </div>
     </nav>
 
+    <div class="info-section">
+      <h5><i class="fas fa-info-circle"></i> How to Add a Post</h5>
+      <p class="mb-2"><strong>Step 1:</strong> Enter the URL of the article you want to add.</p>
+      <p class="mb-2"><strong>Step 2:</strong> Click "Scrape Link" to automatically extract article information.</p>
+      <p class="mb-0"><strong>Step 3:</strong> The post will then be saved to your Archive. Review it there!</p>
+    </div>
+
     <div class="form-card">
       <h4 class="mb-4">Your New Post</h4>
       <form action="{{ url_for('pages.addpost') }}" method="POST">
-        <input class="form-control" type="text" placeholder="Title" name="post-title" value="{{ post_data['Title'] }}">
-        <input class="form-control" type="text" placeholder="Author" name="post-author" value="{{ post_data['Author'] }}">
-        <input class="form-control" type="text" placeholder="Content" name="post-content" value="{{ post_data['Content'] }}">
-        <input class="form-control" type="text" placeholder="Tags (Separate by commas)" name="post-tags" value="{{ post_data['Tags'] }}">
-        <input class="form-control" type="text" placeholder="Link" name="post-link" value="{{ post_data['Link'] }}">
-        <input class="btn btn-secondary btn-block" type="submit" value="Submit">
+        <input class="form-control" type="text" placeholder="Link" name="post-link" value="{{ post_data['Link'] }}" required>
+        <input class="btn btn-secondary btn-block" type="submit" value="Scrape Link!">
+        <span id="loadingSpinner" class="spinner-border spinner-border-sm ml-2" role="status" aria-hidden="true" style="display: none;"></span>
         {% if error %}
           <p id="form_text">{{ error }}</p>
         {% endif %}
       </form>
     </div>
+    <footer class="footer bg-light rounded">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6">
+          <h5>Archive</h5>
+          <p>Your personal link collector platform.</p>
+        </div>
+        <div class="col-md-6">
+          <h5>Quick Links</h5>
+          <div>
+            <a href="{{ url_for('pages.home') }}">Archive</a>
+            <a href="{{ url_for('pages.profile') }}">Profile</a>
+            <a href="{{ url_for('pages.addpost') }}">Add Post</a>
+            <a href="{{ url_for('pages.editpost') }}">Edit Post</a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2025 Archive. Made with ❤️ for organizing your reading.</p>
+      </div>
+    </div>
+  </footer>
   </main>
-
   <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
   <script src="script.js"></script>
 </body>

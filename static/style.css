@@ -22,7 +22,7 @@ body {
 
 .navbar {
   margin-bottom: 2rem;
-  border-bottom: 1px solid #ccc;
+  border: 1px solid #ccc;
 }
 
 .nav-link {
@@ -107,6 +107,14 @@ hr {
 .profile {
   max-width: 80%;
   margin: 3% auto;
+}
+
+.info-section {
+  background: #e3f2fd;
+  border-radius: 10px;
+  padding: 1.5rem;
+  margin: 1.5rem 0;
+  border-left: 4px solid #2196f3;
 }
 
 .form-card {
@@ -200,4 +208,38 @@ hr {
   font-size: 1rem;
   margin-bottom: 0.5rem;
   color: #555;
+}
+
+.footer {
+  background: #f8f9fa;
+  color: #495057;
+  padding: 2rem 1rem 1rem 1rem;
+  margin-top: 2rem;
+  border: 1px solid #dee2e6;
+}
+    
+.footer h5 {
+  color: #495057;
+  margin-bottom: 1rem;
+  font-weight: 600;
+}
+    
+.footer a {
+  color: #6c757d;
+  text-decoration: none;
+  transition: color 0.3s ease;
+  margin-right: 1.5rem;
+}
+    
+.footer a:hover {
+  color: #007bff;
+  text-decoration: none;
+}
+   
+.footer-bottom {
+  border-top: 1px solid #dee2e6;
+  padding-top: 1rem;
+  margin-top: 2rem;
+  text-align: center;
+  color: #6c757d;
 }

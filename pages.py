@@ -48,22 +48,34 @@ def addpost():
         if request.method == 'GET':
             return render_template('addpost.html', post_data={})
         else:
-            post_data = {
-                'UserID': session['user_id'],
-                'Title': request.form['post-title'],
-                'Author': request.form['post-author'],
-                'Content': request.form['post-content'],
-                'Tags': request.form['post-tags'],
-                'Permalink': request.form['post-link'],
-                'published_on': date.today()
-            }
-            existing_post = find_post(post_data['Permalink'])
+            permalink = request.form['post-link']
+            existing_post = find_post(permalink)
             if existing_post:
                 error = "This link already exists!"
-                return render_template('addpost.html', post_data=post_data, error=error)
-            else:
-                insert_post(post_data) 
+                return render_template('addpost.html', post_data={}, error=error)
+            
+            scraper = Scraper()
+            scraped_data = scraper.scrape_work(permalink)
+            if scraped_data is None:
+                error = "Failed to scrape data from the provided link. Please check the URL and try again."
+                return render_template('addpost.html', post_data={'Permalink': permalink}, error=error)
+            
+            post_data = {
+                'UserID': session['user_id'],
+                'Title': str(scraped_data.get('title', 'No title found')),
+                'Author': str(scraped_data.get('author', 'No author found')),
+                'Content': str(scraped_data.get('summary', 'No summary found')),
+                'Tags': str(scraped_data.get('tags', {})),
+                'Permalink': permalink,
+                'published_on': date.today(),
+            }
+            
+            try:
+                insert_post(post_data)
                 return redirect(url_for('pages.home'))
+            except Exception as e:
+                error = f"Error saving post: {str(e)}"
+                return render_template('addpost.html', post_data=post_data, error=error)
     else:
         return redirect(url_for('auth.login_page'))
 
