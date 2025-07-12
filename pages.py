@@ -96,7 +96,6 @@ def editpost():
             if 'load-post' in request.form:
                 permalink = request.form['post-link']
                 if permalink:
-                    print("hi")
                     existing_post = find_post(permalink)
                     if existing_post:
                         return render_template('editpost.html', post_data=existing_post)

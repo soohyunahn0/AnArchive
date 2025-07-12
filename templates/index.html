@@ -55,6 +55,7 @@
       {% if posts.UserID == id %}
         <div id="posts" class="container">
           <a id="post_title" href="{{ posts.Permalink }}">{{ posts.Title }}</a>
+          <h6 id="post_author">Author: {{ posts.Author }}</h6>
           <p id="post_summary">Your Summary: {{ posts.Content }}</p>
           {{ render_tags(posts) }}
           <p class="post-meta">Date Posted: {{ posts.published_on }}</p>

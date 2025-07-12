@@ -45,7 +45,14 @@
       </div>
     </nav>
 
-    <div class="form-card">
+    <div class="info-section">
+      <h5><i class="fas fa-info-circle"></i> How to Edit a Post</h5>
+      <p class="mb-2"><strong>Step 1:</strong> Enter the URL of the article you want to edit.</p>
+      <p class="mb-2"><strong>Step 2:</strong> Click "Load Post" to automatically get your post information.</p>
+      <p class="mb-0"><strong>Step 3:</strong> Edit it how you want and click "Update Post!"</p>
+    </div>
+
+    <div class="form-card form-floating">
       <form action="{{ url_for('pages.editpost') }}" method="POST">
         <h4 class="mb-3">Your Post/Link</h4>
         <input class="form-control" type="text" placeholder="Link" name="post-link" value="{{ post_data['Permalink'] if post_data else '' }}">
@@ -54,8 +61,8 @@
         <h4 class="mt-4 mb-3">Your Edits</h4>
         <input class="form-control" type="text" placeholder="{{ post_data['Title'] if post_data else 'Title' }}" name="post-title" value="{{ post_data['Title'] if post_data else '' }}">
         <input class="form-control" type="text" placeholder="{{ post_data['Author'] if post_data else 'Author' }}" name="post-author" value="{{ post_data['Author'] if post_data else '' }}">
-        <input class="form-control" type="text" placeholder="{{ post_data['Content'] if post_data else 'Content' }}" name="post-content" value="{{ post_data['Content'] if post_data else '' }}">
-        <input class="form-control" type="text" placeholder="{{ post_data['Tags'] if post_data else 'Tags (Separate By Commas)' }}" name="post-tags" value="{{ post_data['Tags'] if post_data else '' }}">
+        <textarea class="form-control overflow-auto" type="text" placeholder="{{ post_data['Content'] if post_data else 'Content' }}" name="post-content" value="{{ post_data['Content'] if post_data else '' }}">{{ post_data['Content'] if post_data else '' }}</textarea>
+        <textarea class="form-control overflow-auto" type="text" placeholder="{{ post_data['Tags'] if post_data else 'Tags (Separate By Commas)' }}" name="post-tags" value="{{ post_data['Tags'] if post_data else '' }}">{{ post_data['Tags'] if post_data else '' }}</textarea>
         <input class="btn btn-secondary btn-block" type="submit" name="update-post" value="Update Post">
 
         {% if error1 %}
