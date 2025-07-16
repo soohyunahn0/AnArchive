@@ -129,7 +129,7 @@ def editpost():
 def deletepost():
     if session.get("logged_in"):
         if request.method == 'GET':
-            return render_template('deletepost.html')
+            return render_template('404.html'), 404
         else:
             post_data = {
                 'Permalink': request.form["Link"],
@@ -138,6 +138,6 @@ def deletepost():
             if existing_post:
                 delete_post(existing_post['PostID'])
                 return redirect(url_for('pages.home'))
-            redirect(url_for('pages.home'))
+            return redirect(url_for('pages.home'))
     else:
         return redirect(url_for('auth.login_page'))
