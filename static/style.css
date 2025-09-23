@@ -127,7 +127,7 @@ hr {
   border-radius: 12px;
   padding: 2rem;
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.05);
-  max-width: 80%;
+  max-width: 50%;
   margin: 0 auto 3rem auto;
 }
 
@@ -136,7 +136,9 @@ hr {
   padding: 2rem 2.5rem;
   border-radius: 12px;
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-  width: 100%;
+  width: 50%;
+  max-width:  50%;
+  margin: 0 auto 2rem auto;
 }
 
 .form-container h2 {

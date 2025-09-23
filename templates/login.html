@@ -36,7 +36,7 @@
   </div>
 </div>
 
-    <div class="form-container mx-auto mb-5">
+    <div class="form-container mb-5">
       <h2>Login</h2>
       <form method="POST" action="{{ url_for('auth.login_page') }}">
         {% if error %}
@@ -48,7 +48,7 @@
       </form>
     </div>
 
-    <div class="form-container mx-auto">
+    <div class="form-container">
       <h2>Don't have an account? Sign up here.</h2>
       <form method="POST" action="{{ url_for('auth.signup') }}">
         {% if msg %}
