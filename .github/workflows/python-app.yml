@@ -35,4 +35,10 @@ jobs:
         flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --exclude anarchive/Lib/site-packages,venv,.venv,build,dist --statistics
     - name: Test with pytest
       run: |
-        pytest
+        set -e
+        pytest || code=$?
+        if [ "${code:-0}" = "5" ]; then
+          echo "No tests collected; treating as success."
+          exit 0
+        fi
+        exit ${code:-0}
