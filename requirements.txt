@@ -5,3 +5,4 @@ soupsieve==2.3.2.post1
 virtualenv==20.17.1
 virtualenv-clone==0.5.7
 vpython==7.6.3
+Werkzeug==2.2.2
